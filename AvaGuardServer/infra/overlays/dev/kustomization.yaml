@@ -1,0 +1,8 @@
+---
+namespace: aranjan
+bases:
+  - ../../bases
+patches:
+  - path: patch-deployment-lab3.yaml
+    target:
+      kind: Deployment

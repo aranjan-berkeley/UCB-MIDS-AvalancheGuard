@@ -1,0 +1,10 @@
+---
+namespace: aranjan
+resources:
+  - config-map.yaml
+  - persistent-volume.yaml
+  - deployment-lab3.yaml
+  - deployment-redis.yaml
+  - service-lab3.yaml
+  - service-redis.yaml
+  - namespace.yaml

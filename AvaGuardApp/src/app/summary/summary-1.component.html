@@ -1,0 +1,30 @@
+<div class="card">
+    <h3>Summary of Avalanche Observations by Area</h3>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Days Old:</span>
+        <input  type="number" id="daysold"  [(ngModel)]="daysold"  min="0" max="99999"  
+             aria-label="daysold" aria-describedby="basic-addon1">
+        <span class="input-group-text" id="basic-addon1">Main Area:</span>
+        <select (change)="onMainAreaChange()" [(ngModel)]="selectedMainArea" >  
+            <option *ngFor="let mainarea of mainAreaArray" value={{mainarea}} >
+            {{mainarea}}
+            </option>
+        </select>
+        <span class="input-group-text" id="basic-addon1">Chart Type:</span>
+        <select (change)="onMainAreaChange()" [(ngModel)]="selectedChart" >  
+            <option *ngFor="let chart of chartList" value={{chart.key}} >
+            {{chart.value}}
+            </option>
+        </select>
+       
+    </div>
+
+    
+    <button [disabled]="loading" class="btn btn-primary" (click)="getImageFromService()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        
+        Run
+    </button>
+
+    <img [src]="imgPath" >
+</div>

@@ -1,0 +1,61 @@
+<div style="text-align:center">
+    <h3>
+      Submit an observation
+    </h3>
+  
+    <div>
+      <webcam [height]="100" [width]="100" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+              [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+              [videoOptions]="videoOptions"
+              [imageQuality]="1"
+              (cameraSwitched)="cameraWasSwitched($event)"
+              (initError)="handleInitError($event)"
+      ></webcam>
+      <br/>
+      <button class="actionBtn" (click)="triggerSnapshot();">Snap</button>
+      <button class="actionBtn" (click)="toggleWebcam();">Toggle Cam</button>
+      <!--<br/>-->
+      <!--<button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button>-->
+      <!--<input id="cameraSwitchCheckbox" type="checkbox" [(ngModel)]="allowCameraSwitch"><label for="cameraSwitchCheckbox">Allow Camera Switch</label>-->
+      <!--<br/>
+      DeviceId: <input id="deviceId" type="text" [(ngModel)]="deviceId" style="width: 500px">
+      <button (click)="showNextWebcam(deviceId);">Activate</button>-->
+    </div>
+  </div>
+  
+  <div class="snapshot" *ngIf="webcamImage">
+    <h3>Nice one!</h3>
+    <img [src]="webcamImage.imageAsDataUrl" height="160" width="200"  />
+  </div>
+  
+  <h4 *ngIf="errors.length > 0">Messages:</h4>
+  <ul *ngFor="let error of errors">
+    <li>{{error | json}}</li>
+  </ul>
+  <br> 
+  <h6 style="font-size: 9pt">Your current location is: lat:-{{lat}} , lng-:{{lng}}</h6>
+  <br>
+  <form class="form-group" [formGroup]="subObsForm" (ngSubmit)="onSubmit()">
+    <textarea id="obsNotes" name="obsNotes" rows="4" cols="50"  >Please enter any obsevation notes here</textarea>
+  <br>
+    <div class="card-title">
+    <div>
+    <input type="checkbox" name="instability[]" value="Avalanche">Did you see/experience an Avalanbche?<br>
+    </div>
+    <br/>
+    <div>
+    <label for="elevation">Choose an Elevation:</label>
+    <select name="elevations" id="elevations" width="100px">
+    <option value="above_treeline">Above treeline</option>
+    <option value="at_treeline">At Treeline</option>
+    <option value="below_treeline">Below reeline</option>
+    </select>
+    </div>
+    <div>
+      <input type="checkbox" name="anonymous" value="Anonymous">Submit Anonymously<br>
+    </div>
+    <br/>
+  
+    <input type="submit" value="Submit">
+    </div>
+</form>

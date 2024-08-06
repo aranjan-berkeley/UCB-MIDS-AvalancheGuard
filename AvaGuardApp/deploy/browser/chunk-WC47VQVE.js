@@ -1,0 +1,1 @@
+import{U as s,j as i,m as t}from"./chunk-YTAQRA7X.js";var V=(()=>{class e{}return e.\u0275fac=function(n){return new(n||e)},e.\u0275mod=t({type:e}),e.\u0275inj=i({imports:[[s]]}),e})();export{V as a};

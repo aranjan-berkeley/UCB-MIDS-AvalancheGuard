@@ -1,0 +1,115 @@
+Name:             pyhtonapi-5664fc6dc9-nbz8s
+Namespace:        w255
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Mon, 17 Jul 2023 19:43:24 -0700
+Labels:           app=pythonapi
+                  pod-template-hash=5664fc6dc9
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.3
+IPs:
+  IP:           10.244.0.3
+Controlled By:  ReplicaSet/pyhtonapi-5664fc6dc9
+Containers:
+  pythonapi:
+    Container ID:   docker://88fe623acec0e22fb7e590bc5c6228832621f1d808e85275a7ba8ccf6208c99d
+    Image:          w255:lab3
+    Image ID:       docker://sha256:4ce0f5b8064d3b2116c5315680b6e4cd1c5b6a671e80bb14791ef7381cae688c
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Mon, 17 Jul 2023 19:43:39 -0700
+      Finished:     Mon, 17 Jul 2023 19:43:39 -0700
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Mon, 17 Jul 2023 19:43:26 -0700
+      Finished:     Mon, 17 Jul 2023 19:43:27 -0700
+    Ready:          False
+    Restart Count:  2
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bx4z8 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-bx4z8:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  25s                default-scheduler  Successfully assigned w255/pyhtonapi-5664fc6dc9-nbz8s to minikube
+  Normal   Pulled     10s (x3 over 25s)  kubelet            Container image "w255:lab3" already present on machine
+  Normal   Created    10s (x3 over 25s)  kubelet            Created container pythonapi
+  Normal   Started    10s (x3 over 25s)  kubelet            Started container pythonapi
+  Warning  BackOff    9s (x3 over 22s)   kubelet            Back-off restarting failed container
+
+
+Name:             redis-796d748b59-894zp
+Namespace:        w255
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Mon, 17 Jul 2023 19:43:24 -0700
+Labels:           app=redis
+                  pod-template-hash=796d748b59
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.4
+IPs:
+  IP:           10.244.0.4
+Controlled By:  ReplicaSet/redis-796d748b59
+Containers:
+  redis:
+    Container ID:   docker://4ce52ce4f65e1f782f55d708e002a22909c357df16dc53b154064956ccce63e4
+    Image:          w255:redis
+    Image ID:       docker://sha256:75bd0d17c5d7d83bca77c40105aec49e7c7a19c604e478d09c6e2f75c323690e
+    Port:           6379/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 17 Jul 2023 19:43:24 -0700
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-dzlmv (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-dzlmv:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  25s   default-scheduler  Successfully assigned w255/redis-796d748b59-894zp to minikube
+  Normal  Pulled     25s   kubelet            Container image "w255:redis" already present on machine
+  Normal  Created    25s   kubelet            Created container redis
+  Normal  Started    25s   kubelet            Started container redis

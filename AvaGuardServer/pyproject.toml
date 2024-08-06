@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "avg-guard-api"
+version = "0.3.0"
+description = ""
+authors = ["Amiya Ranjan <96855110+aranjan-berkeley@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+fastapi = "^0.99.0"
+uvicorn = "^0.22"
+joblib = "^1.3"
+requests = "^2.31"
+fastapi-cache2 = {extras = ["redis"], version = "^0.1.9"}
+sagemaker = "2.224.4"
+Pillow = "10.3.0"
+boto3 = "1.34.153"
+pymongo = {version = "3.11", extras = ["srv"]}
+pyjwt ="*"
+passlib = {extras = ["bcrypt"], version = "1.7.4"}
+matplotlib="*"
+basemap = "^1.4.1"
+basemap-data-hires = "^1.3.2"
+cartopy = "^0.23.0"
+geopandas = "^1.0.1"
+contextily = "^1.6.0"
+gmplot = "^1.4.1"
+seaborn = "^0.13.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4"
+isort = "^5.12.0"
+black = "^23.3"
+pre-commit = "^3.3.1"
+httpx = "^0.24.0"
+ruff = "^0.0.275"
+aiofiles = "*"
+uuid7 = '*'
+python-multipart = "*"
+seaborn = "*"
+
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,29 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark px-3 me-auto mb-2 mb-lg-0" *ngIf="user">
+
+
+  <div class="navbar-nav me-auto mb-2 mb-lg-0">
+
+      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+      <a class="nav-item nav-link" routerLink="/observations" routerLinkActive="active">Observations</a>
+      <a class="nav-item nav-link" routerLink="/summary" routerLinkActive="active">Summary</a>
+      <a class="nav-item nav-link" routerLink="/info" routerLinkActive="active">Info</a>
+      
+      <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
+      <a class="nav-item">Logged In: {{this.user.username}} </a>
+  </div>
+  <div class="m-0 order-0 order-md-1 position-absolute main-logo">
+    <a class="navbar-brand" href='/home'><img src="../assets/images/avaguardlogo01.png" class="rounded-circle" width="55px" ></a>
+  </div>
+</nav>
+
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+  <alert></alert>
+  <router-outlet></router-outlet>
+
+
+
+</div>

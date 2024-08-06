@@ -1,0 +1,222 @@
+<!--
+<h1>Observations</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Observation</a>
+<style>
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      top: -5px;
+      left: 105%;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+    </style>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 5%">#</th>                
+            
+            <th style="width: 20%">User Name</th>
+            <th style="width: 20%">Location</th>
+            <th style="width: 20%">Date Taken</th>
+            <th style="width: 20%">Image</th>
+            <th style="width: 20%">is Terrain?</th>
+            <th style="width: 20%">Avalacnhes?</th>
+            <th style="width: 20%">Category</th>
+            <th style="width: 5%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let observation of observations let i=index">
+            <td> {{i+1}}</td>
+            
+            <td>{{observation.submitted_user}}</td>
+            <td>{{observation.general_location}}</td>
+            <td>{{observation.datetime_taken_UTC}}</td>
+            <td>
+                <img id="image"
+                 src={{observation.imagefile_url}} width="224" title={{observation.imagefile_url}} onclick="window.open(this.src)"/>
+            </td>
+            <td>{{observation.terrain_prediction_score}}</td>
+            <td>{{observation.avalanche_prediction_score}}</td>
+            <td>{{observation.avalanche_category_prediction}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{observation.observation_id}}" class="btn btn-sm btn-primary me-1">Edit</a>
+                <button (click)="deleteObservation(observation.observation_id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="observation.isDeleting">
+                    <span *ngIf="observation.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!observation.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!observations">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+-->
+
+<h1>Observations</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Observation</a>
+<style>
+    table {
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      margin: 0;
+      padding: 0;
+    }
+
+    table caption {
+      font-size: 1.5em;
+      margin: 0.5em 0.75em;
+    }
+
+    table tr {
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 0.35em;
+    }
+
+    table th,table td {
+      padding: 0.625em;
+      text-align: center;
+      font-size: 0.85em;
+      letter-spacing: 0.01em;
+    }
+
+    table th {
+      font-size: 0.85em;
+      letter-spacing: 0.01em;
+      
+    }
+
+    @media screen and (max-width: 1320px) {
+      table {
+        border: 0;
+      }
+
+      table caption {
+          font-size: 1.2em;
+      }
+        
+      table thead {
+          border: none;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+      }
+        
+      table tr {
+          border-bottom: 3px solid #ddd;
+          display: block;
+          margin-bottom: 0.625em;
+      }
+        
+      table td {
+          text-align: right;
+          border-bottom: 1px solid #ddd;
+          display: block;
+          font-size: 0.85em;
+          letter-spacing: 0.01em;
+      }
+        
+      table td::before {
+          /*
+          * aria-label has no advantage, it won't be read inside a table
+          content: attr(aria-label);
+          */
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+          
+      }
+        
+      table td:last-child {
+          border-bottom: 0;
+      }
+    }
+
+    hover-tooltip {
+        border-bottom: 1px dotted #000;
+        border-color: red; 
+        cursor: help; /* Changes the cursor to a question mark*/
+    }
+</style>    
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>                
+            <th scope="col">Image</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Date Taken</th>
+            
+            <th scope="col" style="font-size: 09px;">ML Snowy Terrain? </th>
+            <th scope="col" style="font-size: 09px;">ML Avalacnhes?</th>
+            <th scope="col" style="font-size: 09px;">ML Category</th>
+            <th scope="col" style="font-size: 09px;">Avl. Obsrvd</th>
+            <th scope="col" style="font-size: 09px;">Avl. Trgrd</th>
+            <th scope="col" style="font-size: 09px;">Avl. Exprncd</th>
+            <th scope="col" >Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let observation of observations let i=index">
+            <td data-label="#"> {{i+1}}</td>
+            <td data-label="Image">
+                <img id="image"
+                 src={{observation.imagefile_url}} width="112" title={{observation.imagefile_url}} onclick="window.open(this.src)"/>
+            </td>            
+            <td data-label="User Name" style="font-size: 09px;">{{observation.submitted_user}}</td>
+            <td data-label="Location" >
+              <span class="hover-tooltip" title={{(observation.observation_notes)}}>{{observation.general_location}}</span>
+            </td>
+            <td data-label="Date Taken" style="font-size: 09px;">{{observation.datetime_taken_UTC}}</td>
+
+            <td data-label="ML Snowy Terrain?">
+              <span class="hover-tooltip" title={{(observation.elevation_type)}}>{{observation.terrain_prediction_score}}</span>
+            </td>
+            <td data-label="ML Avalanches?">{{observation.avalanche_prediction_score}}</td>
+            <td data-label="ML Category">{{observation.avalanche_category_prediction}}</td>
+            <td data-label="Avl. Obsrvd">{{observation.avalanche_observed}}</td>
+            <td data-label="Avl. Trgrd">{{observation.avalanche_triggered}}</td>
+            <td data-label="Avl. Exprncd">{{observation.avalanche_experienced}}</td>
+            <td  data-label="Action" style="white-space: nowrap">
+                <!--<a routerLink="edit/{{observation.observation_id}}" class="btn btn-sm btn-primary me-1">Edit</a>-->
+                <button (click)="deleteObservation(observation.observation_id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="observation.isDeleting">
+                    <span *ngIf="observation.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!observation.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!observations">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,23 @@
+<div class="video-container" *ngIf="!error">
+	<video [class.show]="!isCaptured" [class.hide]="isCaptured" #video id="video" style = "width: 100%; 	max-width: 640px; height: auto;"
+		autoplay></video>
+	<canvas [class.show]="isCaptured" [class.hide]="!isCaptured" #canvas id="canvas" style = "width: 100%; 	max-width: 640px; height: auto;"></canvas>
+</div>
+
+<div class="snap-container">
+	<button class="btn btn-primary" *ngIf="!isCaptured" (click)="capture()">Snap Photo</button>
+	<button class="btn btn-danger" *ngIf="isCaptured" (click)="removeCurrent()">Take Another</button>
+
+	<div *ngIf="error" class="text-danger mt-4">
+		{{ error }}. Please click refresh on stackblitz
+		<div class="mt-5">
+			<img src="https://trungk18.com/7e0976255739e721501803ee074f1f94/camera.gif" />
+		</div>
+		</div>
+	</div>
+
+	<ul class="list-unstyled">
+		<li *ngFor="let src of captures; let idx = index" (click)="setPhoto(idx)">
+			<img style="width: 100%; 	max-width: 640px; height: auto;" [src]="src"   />
+  </li>
+	</ul>
